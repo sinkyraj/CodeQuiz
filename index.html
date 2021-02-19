@@ -42,9 +42,9 @@
     <div id="header">
        
           
-          <p>Please choose begin quiz button to start the quiz!</p>
+          <p>Please choose 'Begin Quiz' button to start the quiz!</p>
          
-          <a class="btn btn-primary btn-lg" id="start"onclick="myTimer() href="#" role="button">Begin Quiz</a>
+          <button class="btn btn-primary btn-lg" id="start"onclick="myTimer() href="#" role="button">Begin Quiz</button>
         </div>
         <div id="quiz">
           <p id="question">Questions</p>
@@ -59,7 +59,7 @@
           
           
           <h4 id="dispInitials"></h4>
-          <h4 id="visiblescore"></h4>
+          <!-- <h4 id="visiblescore"></h4> -->
           <h4 id="score"></h4>
         </div>
         <div>
@@ -98,6 +98,7 @@
       time--
       document.getElementById("Timer").innerHTML = time;
        }
+     document.getElementById('start').value = ""
 
      })
       
@@ -183,17 +184,20 @@
 
       document.getElementById('donebtn').addEventListener('click', event => {
       document.getElementById('dispInitials').textContent = document.getElementById('initial').value
+
+      document.getElementById('initial').value= ""
+      donebtn.value = ""
       
-        var visiblescore = 0
-        if (time >= 0) {
+        
+        if (time >= 20) {
 
           document.getElementById('score').textContent = 'Great job!'
-          visualscore()
+         
 
         } else {
 
           document.getElementById('score').textContent = 'You can do better!'
-          visualscore()
+          
 
 
         }
