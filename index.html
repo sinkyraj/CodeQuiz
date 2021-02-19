@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+  <title>Quiz</title>
+  <!-- <link rel="stylesheet" href="./assets/style.css" /> -->
+  <style>
+
+.container {
+  text-align: center;
+  margin-top: 10px;
+  margin: auto;
+  width: 1000px;
+  background-color:lightgrey;
+  height:800px
+}
+#header{
+  
+background-color:lightblue ;
+height: 150px;
+
+}
+
+.btn {
+  background: blue;
+}
+#stoptime{
+  background-color: blue;
+}
+p{
+
+  font-size: 20px;
+}
+footer{
+
+  margin-left: 670px;
+  color:dodgerblue;
+}
+#navbarcolor{
+background-color:cornflowerblue;
+height: 80px;
+
+}
+  </style>
+</head>
+<body>
+<nav id="navbarcolor" class="navbar navbar-expand-lg">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#"></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#"></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#"></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#"></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true"></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  <div class="container">
+    <div id="header">
+       
+          
+          <p>Please choose begin quiz button to start the quiz!</p>
+         
+          <a class="btn btn-primary btn-lg" id="start"onclick="myTimer() href="#" role="button">Begin Quiz</a>
+        </div>
+        <div id="quiz">
+          <p id="question">Question</p>
+          <button onclick="checkAnswer(event)" id="answer1">Answer1</button>
+          <button onclick="checkAnswer(event)" id="answer2">Answer2</button>
+          <button onclick="checkAnswer(event)" id="answer3">Answer3</button>
+          <button onclick="checkAnswer(event)" id="answer4">Answer4</button>
+          
+        </div>
+        <br>
+        <div class="gamefinish" id="Quizover">
+          
+          
+          <h4 id="dispInitials"></h4>
+          <h4 id="visiblescore"></h4>
+          <h4 id="score"></h4>
+        </div>
+        <div>
+          <!-- <h3 id="timer">Timer:</h3> -->
+          <p id="Timer"></p>
+          <button class="btn btn-primary btn-lg" id= "stoptime" onclick="myStopFunction()">Stop time</button>
+        </div>
+        
+        
+        <div id="results"></div>
+
+  </div>
+
+  <footer class="footer mt-auto py-3 bg-light">
+    <p>
+   
+    &copy; 2021 Shweta Sharma.
+    </p>
+  </footer>
+
+  <script src="./assets/script.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+  <script>
+
+
+
+  var myVar;
+  //Start button click event to start the timer and questions
+  document.getElementById('start').addEventListener('click', event => {
+    generateQuizQuestion()
+
+     myVar = setInterval(myTimer, 1000);
+      function myTimer() {
+      time--
+      document.getElementById("Timer").innerHTML = time;
+       }
+
+     })
+      
+      
+      
+    
+  var score = 0;
+  var correct;
+  var finalQuestionIndex = quizQuestions.length; //
+  var currentQuestionIndex = 0;
+  var time= 60  //1 minute
+
+  
+ // myStopFunction for stop the time
+      function myStopFunction() {
+          clearInterval(myVar);
+        }
+
+    
+
+  //function checkAnswer for validating questions and answers
+ 
+
+  function checkAnswer(event) {
+      correct = quizQuestions[currentQuestionIndex].answer;
+       var answer = event.target.textContent 
+
+
+      if (answer === correct && currentQuestionIndex !== finalQuestionIndex) {
+       
+        alert("That Is Correct!");
+        currentQuestionIndex++;
+        generateQuizQuestion();
+        
+      } else if (answer !== correct && currentQuestionIndex !== finalQuestionIndex) {
+        alert("That Is Incorrect.")
+        
+        time-=10
+        currentQuestionIndex++;
+        generateQuizQuestion();
+       
+      } else {
+        showScore();
+      }
+    }
+
+    //generateQuizQuestion function for questions, options and answers
+    function generateQuizQuestion() {
+        // QuizoverDiv.style.display = "none";
+        if (currentQuestionIndex === finalQuestionIndex) {
+          return showScore();
+        }
+      document.getElementById('question').textContent = quizQuestions[currentQuestionIndex].questions
+
+      document.getElementById('answer1').textContent = quizQuestions[currentQuestionIndex].options[0]
+
+      document.getElementById('answer2').textContent = quizQuestions[currentQuestionIndex].options[1]
+
+      document.getElementById('answer3').textContent = quizQuestions[currentQuestionIndex].options[2]
+
+      document.getElementById('answer4').textContent = quizQuestions[currentQuestionIndex].options[3]
+
+        
+      };
+
+       //showScore function for putting initial and done button and show score
+      function showScore(){
+
+        myStopFunction()
+      var gameover=document.getElementById('Quizover')
+      var inputElem= document.createElement('input')
+      var btnElem = document.createElement('button')
+
+      inputElem.setAttribute('id','initial')
+      btnElem.textContent='done'
+      btnElem.setAttribute('id', 'donebtn')
+
+
+      gameover.append(inputElem)
+      gameover.append(btnElem)
+
+      
+
+      document.getElementById('donebtn').addEventListener('click', event => {
+      document.getElementById('dispInitials').textContent = document.getElementById('initial').value
+      
+        var visiblescore = 0
+        if (time >= 0) {
+
+          document.getElementById('score').textContent = 'Great job!'
+          visualscore()
+
+        } else {
+
+          document.getElementById('score').textContent = 'You can do better!'
+          visualscore()
+
+
+        }
+      
+      })
+        
+     }  
+
+ 
+  
+  </script>
+</body>
+</html>

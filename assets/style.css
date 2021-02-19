@@ -1,0 +1,19 @@
+.container {
+  text-align: center;
+  margin: auto;
+  width: 1000px;
+  background-color: darkcyan;
+}
+
+#header {
+  background-color: darksalmon;
+}
+
+.btn {
+  background: blue;
+}
+
+h3{
+
+  font-size: small;
+}
