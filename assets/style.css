@@ -1,19 +1,35 @@
 .container {
   text-align: center;
+  margin-top: 10px;
   margin: auto;
   width: 1000px;
-  background-color: darkcyan;
+  background-color: lightgrey;
+  height: 800px
 }
 
 #header {
-  background-color: darksalmon;
+  background-color: lightblue;
+  height: 150px;
 }
 
 .btn {
   background: blue;
 }
 
-h3{
+#stoptime {
+  background-color: blue;
+}
 
-  font-size: small;
+p {
+  font-size: 20px;
+}
+
+footer {
+  margin-left: 670px;
+  color: dodgerblue;
+}
+
+#navbarcolor {
+  background-color: cornflowerblue;
+  height: 80px;
 }
